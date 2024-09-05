@@ -1,20 +1,18 @@
 import { useCharacters } from "../hooks/useCharacters"
-import { BuscarCharacters } from "./BuscarCharacters"
 import Pagination from '@mui/material/Pagination';
 import { GridCharacters } from "./GridCharacters";
+import { useState } from "react";
 
  
 export const MarvelApp = () => {
- 
-    const {characters, handleGetMarvel} = useCharacters()
+    const [pagina, setPagina] = useState()
+    const {characters,} = useCharacters(pagina)
   
     return (
         <>
-        <BuscarCharacters handleGetMarvel={handleGetMarvel}/>
         <GridCharacters characters={characters}/>
-        <Pagination count={100} color="primary" onChange={(e, value) => console.log(value) } />
+        <Pagination count={10} color="primary" className="d-flex justify-content-center mt-5"  onChange={(e,value)=>{setPagina(value)}} />
         </>
     )
 }
- 
  
