@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { reqCharacters } from "../service/characters"
 
 
-export const useCharacters = (pagina) => {
+export const useCharacters = (pagina, buscarPer) => {
   
     const [characters, setCharacters] = useState()
     const [total, setTotal] = useState();
@@ -11,11 +11,11 @@ export const useCharacters = (pagina) => {
         // si no tiene dependecias, solo se ejecuta la primera carga del componente
         // Si si tiene dependecias, se ejecuta cada que la dependecia cambia
         
-        reqCharacters(pagina).then((data)=>{
+        reqCharacters(pagina, buscarPer).then((data)=>{
             setCharacters(data.results)
             setTotal(data.total)
         })
-      }, [pagina]);
+      }, [pagina, buscarPer]);
 
 
     // retorno del hook
